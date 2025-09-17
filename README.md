@@ -1,16 +1,86 @@
-# flutter_android12_splash_screen
+# 📱 Android 12 Splash Screen in Flutter
 
-A new Flutter project.
+A step-by-step guide to set up a **custom Splash Screen** in Flutter for **Android 12 and above**, using the [`flutter_native_splash`](https://pub.dev/packages/flutter_native_splash) package.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ✨ Features
+- Light and Dark theme support.
+- Works with Android 12+ as well as earlier versions.
+- Simple configuration using a single YAML file.
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## ⚙️ Setup Steps
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 1. Create splash images
+- Design your app logo inside a **640x640** square (Radius = 320) using Figma or any design tool.
+- Export two versions:
+  - Light theme image
+  - Dark theme image
+
+### 2. Add images to Flutter project
+Place them inside:
+```
+assets/images/
+```
+
+### 3. Update `pubspec.yaml`
+Add your assets:
+```yaml
+flutter:
+  assets:
+    - assets/images/android_12_splash_light_theme.png
+    - assets/images/android_12_splash_dark_theme.png
+```
+
+### 4. Install the package
+```bash
+flutter pub add flutter_native_splash
+```
+
+### 5. Create config file
+In the root folder, create a file named:
+```
+flutter_native_splash.yaml
+```
+
+Add the following configuration:
+
+```yaml
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/android_12_splash_light_theme.png
+  color_dark: "#858383"
+  image_dark: assets/images/android_12_splash_dark_theme.png
+
+  android_12:
+    image: assets/images/android_12_splash_light_theme.png
+    color: "#ffffff"
+
+    image_dark: assets/images/android_12_splash_dark_theme.png
+    color_dark: "#858383"
+```
+
+⚠️ **Important:** This file is very sensitive to indentation and spaces.
+
+### 6. Generate splash screen
+Run the following command:
+```bash
+dart run flutter_native_splash:create --path=flutter_native_splash.yaml
+```
+
+### 7. Run your app
+Restart your app and you should see the new splash screen in both **Light** and **Dark** modes.
+
+---
+
+## 📚 References
+- [Android Developers - Splash Screen API](https://developer.android.com/develop/ui/views/launch/splash-screen)  
+- [YouTube Tutorial](https://www.youtube.com/watch?v=uJOuOHfAv5Y&list=PLwWuxCLlF_ucnfkI-_yNRCOTI-yJa5N-a&index=7)
+
+
+
+## 👨‍💻 Author
+**Mutee Aljabri**  
+📧 Mutee1990@gmail.com  
